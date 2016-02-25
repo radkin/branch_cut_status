@@ -1,0 +1,32 @@
+!!!
+%html
+  %head 
+  %body
+    #wrapper
+      #header
+        %h1{:style=>'text-align: center'} Jenkins CI Job Status
+ 
+      #content
+        =yield
+ 
+    %title Jenkins CI Jobs Status 
+    %link(rel="stylesheet" href="css/styles.css")
+      #nav
+        %ol
+          %a(href="http://larry-elk/#/dashboard/elasticsearch/downstream%20failures")
+            %li Downstream Failures
+          %a(href="http://your/artifacts/versions/here")
+            %li Artifacts Dashboard
+          %a(href="/upload")
+            %li Upload urls/jobs.yaml
+          %a(href="/joburls")
+            %li Show Job URLs
+          %a(href="/all")
+            %li All Jenkins Status
+          %a(href="/login")
+            %li login
+          %a(href="/logout")
+            %li logout
+      #footer
+        %p
+          Empty Footer

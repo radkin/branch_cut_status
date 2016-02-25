@@ -1,0 +1,49 @@
+%html
+  %body
+    %br
+    %br
+    %h2{:bgcolor => "aquamarine"}= "Release #{version} status"
+    - result_deploy_status.delete_if { |key, value| key >= "version" }
+    %table{:border => "5", :cellpadding => "4", :cellspacing => "3", :width => "65%"}
+      %colgroup
+        %col{:span => "1", :style => "background-color:pastelgreen"}/
+        %col{:span => "2", :style => "background-color:lightcyan"}/
+        %col{:span => "3", :style => "background-color:bisque"}/
+      %tr
+        %th{:bgcolor => "grey"} App
+        %th{:bgcolor => "lightblue"} Review Status
+        %th{:bgcolor => "lightblue"} Last Review SUCCESS
+        %th{:bgcolor => "lightgrey"} Deploy Status
+        %th{:bgcolor => "lightgrey"} Last Deploy SUCCESS
+        %th{:bgcolor => "lightgreen"} Artifact Version
+      %tr
+        - result_deploy_status.each do |key, value|
+          %th
+            = "#{key}"
+          %th
+            - if result_review_status["#{key}"] == "FAILURE"
+              %a{:href =>result_review_uri["#{key}"]} 
+                %img{:src => '/images/red.png', :title => "#{result_review_status["#{key}"]}"}
+            - elsif result_review_status["#{key}"] =~ /BUILDING/
+              %a{:href =>result_review_uri["#{key}"]} 
+                %img{:src => '/images/green_anime.gif', :title => "#{result_review_status["#{key}"]}"}
+            - elsif result_review_status["#{key}"] == "SUCCESS"
+              %a{:href =>result_review_uri["#{key}"]} 
+                %img{:src => '/images/green.png', :title => "#{result_review_status["#{key}"]}"}
+          %th
+            = result_review_buildid["#{key}"]
+          %th
+            - if result_deploy_status["#{key}"] == "FAILURE"
+              %a{:href =>result_deploy_uri["#{key}"]} 
+                %img{:src => '/images/red.png', :title => "#{result_deploy_status["#{key}"]}"}
+            - elsif result_deploy_status["#{key}"] =~ /BUILDING/
+              %a{:href =>result_deploy_uri["#{key}"]} 
+                %img{:src => '/images/green_anime.gif', :title => "#{result_deploy_status["#{key}"]}"}
+            - elsif result_deploy_status["#{key}"] == "SUCCESS"
+              %a{:href =>result_deploy_uri["#{key}"]} 
+                %img{:src => '/images/green.png', :title => "#{result_deploy_status["#{key}"]}"}
+          %th
+            = result_deploy_buildid["#{key}"]
+          %th
+            = result_deploy_ver["#{key}"]
+          %tr

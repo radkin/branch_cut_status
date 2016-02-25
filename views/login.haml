@@ -1,0 +1,15 @@
+%html
+  %body
+    %br
+    %br
+    %br
+    %form{ :action => "", :method => "post"}
+      %fieldset
+        %ol
+          %li
+            %label{:for => "username"} username:
+            %input{:type => "text", :name => "username", :class => "text"}
+          %li
+            %label{:for => "password"} password:
+            %input{:type => "text", :name => "password", :class => "text"}
+        %input{:type => "submit", :value => "login", :class => "button"}

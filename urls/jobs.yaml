@@ -1,0 +1,4 @@
+---
+larry: "http://larry-jenkins:8080/jenkins/job/larry_version_jtype/"
+moe: "http://moe-jenkins:8080/jenkins/job/moe_version_jtype/"
+curly: "http://curly-jenkins:8080/jenkins/job/curly_version_jtype/"
